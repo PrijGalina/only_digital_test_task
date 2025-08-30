@@ -34,6 +34,7 @@ const Slider: React.FC<SliderProps> = ({ slides }) => {
   const limitedSlides = slides.slice(0, 6)
   const swiperRef = useRef<any>(null)
   const [activeIndex, setActiveIndex] = useState(0)
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 767)
 
   const firstSlide = slides[0]
   if (!firstSlide) return
@@ -51,6 +52,12 @@ const Slider: React.FC<SliderProps> = ({ slides }) => {
   const circleRatio = BASE_CIRCLE_DIAMETER / BASE_WIDTH
   const screenWidth = window.innerWidth
   const circleDiameter = circleRatio * screenWidth
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 767);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [])
 
   useEffect(() => {
     const currentSlide = limitedSlides[activeIndex];
@@ -98,6 +105,7 @@ const Slider: React.FC<SliderProps> = ({ slides }) => {
       effect="fade"
       fadeEffect={{ crossFade: true }}
       speed={800}
+      pagination={isMobile ? { clickable: true } : false}
     >
       {limitedSlides.map((slide, index) => (
         <SwiperSlide key={index}>
@@ -111,18 +119,21 @@ const Slider: React.FC<SliderProps> = ({ slides }) => {
             endRef={(el) => {
               endRefs.current[index] = el;
             }}
-            
+            category={slide.category}
+            isMobile={isMobile}
           />
         </SwiperSlide>
       ))}
 
-      <CustomPagination
-        slidesCount={limitedSlides.length}
-        activeIndex={activeIndex}
-        circleDiameter={circleDiameter}
-        category={limitedSlides[activeIndex]?.category || ''}
-        onPointClick={(i) => swiperRef.current?.slideToLoop(i)}
-      />
+      { !isMobile && (
+        <CustomPagination
+          slidesCount={limitedSlides.length}
+          activeIndex={activeIndex}
+          circleDiameter={circleDiameter}
+          category={limitedSlides[activeIndex]?.category || ''}
+          onPointClick={(i) => swiperRef.current?.slideToLoop(i)}
+        />
+      )}
 
       <MainNavigation
         slidesCount={limitedSlides.length}

@@ -5,6 +5,7 @@ import {
   PeriodWrapper,
   DateStart,
   DateEnd,
+  Category,
 } from './styles'
 import { SwiperSlide } from 'swiper/react'
 import EventContent from '../Event'
@@ -21,9 +22,11 @@ interface SlideContentProps {
   startRef: React.Ref<HTMLDivElement>
   endRef: React.Ref<HTMLDivElement>
   events: EventData[]
+  category: string
+  isMobile: boolean
 }
 
-const SlideContent: React.FC<SlideContentProps> = ({ startRef, endRef, events, startDate, endDate}) => {
+const SlideContent: React.FC<SlideContentProps> = ({ startRef, endRef, events, startDate, endDate, category, isMobile}) => {
   const swiperRef = useRef<any>(null)
 
   return (
@@ -32,6 +35,10 @@ const SlideContent: React.FC<SlideContentProps> = ({ startRef, endRef, events, s
         <DateStart ref={startRef}>{startDate}</DateStart>
         <DateEnd ref={endRef}>{endDate}</DateEnd>
       </PeriodWrapper>
+
+      {isMobile && (
+        <Category>{category}</Category>
+      )}
       
       <StyledSwiper
         onSwiper={(swiper) => (swiperRef.current = swiper)}

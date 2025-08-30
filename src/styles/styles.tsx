@@ -36,6 +36,23 @@ export const AppWrapper = styled.div<AppWrapperProps>`
     height: 100%;
     transform: translateX(-50%);
   }
+
+  @media (max-width: 767px) {
+    border-left: none;
+    border-right: none;
+    margin: 0;
+    width: 95vw;
+
+    &::before, 
+    &::after {
+      display: none;
+    }
+
+    .swiper-pagination {
+      top: 58% !important;
+    }
+  
+  }
 `;
 
 export const AppTitle = styled.h1`
@@ -61,4 +78,16 @@ export const AppTitle = styled.h1`
     background: linear-gradient(135deg, #3877EE, #EF5DA8);
     transform: translateX(-50%);
   }
+
+   @media (max-width: 767px) {
+    position: relative;
+    font-size: 6.25vw;
+    margin: 59px 20px;
+    left: 0;
+    top: 0;
+
+    &::before {
+      display: none;
+    }
+   }
 `

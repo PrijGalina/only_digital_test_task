@@ -3,6 +3,7 @@ import styled from 'styled-components'
 export const Wrapper = styled.div``
 
 export const Title = styled.p`
+  user-select: none;
   font-family: "Bebas Neue", sans-serif;
   margin: 0 0 15px;
   font-size: 25px;
@@ -10,6 +11,7 @@ export const Title = styled.p`
 `
 
 export const Description = styled.p`
+  user-select: none;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;

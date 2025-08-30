@@ -26,6 +26,12 @@ export const PaginationWrapper = styled.div<PaginationWrapperProps>`
     pointer-events: none;
     opacity: 0.2;
   }
+
+  @media (max-width: 767px) { 
+    &::before {
+      display: none;
+    }
+  }
 `
 
 interface PaginationPointProps {

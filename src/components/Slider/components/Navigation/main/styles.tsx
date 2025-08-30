@@ -48,4 +48,15 @@ export const ArrowButton = styled.button`
     transform: rotate(180deg) translateY(50%);
     background-size: 0.6vw;
   }
+
+  @media (max-width: 767px) {
+    top:60%;
+    width: 25px;
+    height: 25px;
+    z-index: 1000;
+
+    &:last-child {
+      left: 65px;
+    }
+  }
 `

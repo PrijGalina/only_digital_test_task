@@ -9,6 +9,11 @@ export const NavigationWrapper = styled.div`
   top: 0;
   right: 0;
   z-index: 1;
+
+  @media (max-width: 767px) {
+    opacity: 0.5;
+    width: 50%;
+  }
 `
 
 export const ArrowButton = styled.button`
@@ -38,5 +43,9 @@ export const ArrowButton = styled.button`
   
   &:hover {
     background-color: #f5f5f5; 
+  }
+
+  @media (max-width: 767px) {
+    display: none;
   }
 `
